@@ -1,16 +1,13 @@
+using AppGmz.DAL;
+using AppGmz.Models.IdentityModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace AppGmzAPI
 {
@@ -26,12 +23,25 @@ namespace AppGmzAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppGmzAPI", Version = "v1" });
             });
+
+            //TODO: Change ConnectionString for DockerContainer!!!
+            services.AddDbContext<AppDbContext>(op =>
+            {
+                op.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
+            services.AddIdentity<AppUser, AppRole>(opts =>
+                {
+                    opts.Password.RequireNonAlphanumeric = false;
+                    opts.Password.RequiredLength = 6;
+                    opts.Password.RequireUppercase = false;
+                })
+                .AddEntityFrameworkStores<AppDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +53,12 @@ namespace AppGmzAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AppGmzAPI v1"));
             }
-
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();

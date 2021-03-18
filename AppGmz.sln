@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.Core", "AppGmz.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.BL", "AppGmz.BL\AppGmz.BL.csproj", "{6468CAFA-115A-4988-B3ED-9E70516FE060}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.Services", "AppGmz.Services\AppGmz.Services.csproj", "{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6468CAFA-115A-4988-B3ED-9E70516FE060}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6468CAFA-115A-4988-B3ED-9E70516FE060}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6468CAFA-115A-4988-B3ED-9E70516FE060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
