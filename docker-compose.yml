@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+    web-api-server:
+        container_name: web-api-backend
+        build: 
+           context: .
+           dockerfile: Dockerfile
+        restart: unless-stopped
+        environment:
+           ServerDb: "ms-sql-server"
+           CatalogNameDb: "MyTestDb"
+           UserNameDb: "SA"
+           Password: "P@55w0rd11"
+        ports:
+           - "5005:5005"
+           - "8001:443"
+        depends_on:
+           - ms-sql-server 
+    ms-sql-server:
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        container_name: ms-sql-database
+        environment:
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "P@55w0rd11"
+            MSSQL_PID: "Express"
+        ports:
+            - "1433:1433"
