@@ -30,10 +30,4 @@
     <ProjectReference Include="..\AppGmz.Services\AppGmz.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\..\Users\fhcty\.nuget\packages\automapper\10.1.1\lib\netstandard2.0\AutoMapper.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

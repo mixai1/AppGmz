@@ -13,16 +13,10 @@ COPY AppGmz.DAL/AppGmz.DAL.csproj AppGmz.DAL/AppGmz.DAL.csproj
 COPY AppGmz.Models/AppGmz.Models.csproj AppGmz.Models/AppGmz.Models.csproj
 COPY AppGmz.Services/AppGmz.Services.csproj AppGmz.Services/AppGmz.Services.csproj
 RUN dotnet restore AppGmz.sln
-# Run dotnet restore AppGmzAPI
-# RUN dotnet restore AppGmz.BL
-# RUN dotnet restore AppGmz.Core
-# RUN dotnet restore AppGmz.CQRS
-# RUN dotnet restore AppGmz.DAL
-# RUN dotnet restore AppGmz.Models
-# RUN dotnet restore AppGmz.Services
+
 COPY . .
 WORKDIR /src/AppGmzAPI
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish --no-restore -c Release -o /app
 
 FROM build AS publish
 #RUN dotnet publish WebAppAPI.csproj -c Release -o /app
