@@ -11,4 +11,9 @@
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppGmz.DAL\AppGmz.DAL.csproj" />
+    <ProjectReference Include="..\AppGmz.Models\AppGmz.Models.csproj" />
+  </ItemGroup>
+
 </Project>

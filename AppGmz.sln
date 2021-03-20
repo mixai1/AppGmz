@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmzAPI", "AppGmzAPI\AppGmzAPI.csproj", "{8E0787F9-0868-48E9-BFED-88DE265AE5C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppGmzAPI", "AppGmzAPI\AppGmzAPI.csproj", "{8E0787F9-0868-48E9-BFED-88DE265AE5C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.Models", "AppGmz.Models\AppGmz.Models.csproj", "{22D70BE2-41F9-48A5-B6FB-CBB6B1CAF174}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppGmz.Models", "AppGmz.Models\AppGmz.Models.csproj", "{22D70BE2-41F9-48A5-B6FB-CBB6B1CAF174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.DAL", "AppGmz.DAL\AppGmz.DAL.csproj", "{4E95BB6B-D35D-41E3-8431-309DCE88FB8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppGmz.DAL", "AppGmz.DAL\AppGmz.DAL.csproj", "{4E95BB6B-D35D-41E3-8431-309DCE88FB8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.Core", "AppGmz.Core\AppGmz.Core.csproj", "{F239EFE5-AE26-457F-A0E6-809F7BA62F11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppGmz.Core", "AppGmz.Core\AppGmz.Core.csproj", "{F239EFE5-AE26-457F-A0E6-809F7BA62F11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.BL", "AppGmz.BL\AppGmz.BL.csproj", "{6468CAFA-115A-4988-B3ED-9E70516FE060}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppGmz.BL", "AppGmz.BL\AppGmz.BL.csproj", "{6468CAFA-115A-4988-B3ED-9E70516FE060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.Services", "AppGmz.Services\AppGmz.Services.csproj", "{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppGmz.Services", "AppGmz.Services\AppGmz.Services.csproj", "{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGmz.CQRS", "AppGmz.CQRS\AppGmz.CQRS.csproj", "{849EA069-486F-4600-98DD-19D4098B4BB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADDF04F2-7A64-4498-AC79-FE4ACB1785AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849EA069-486F-4600-98DD-19D4098B4BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849EA069-486F-4600-98DD-19D4098B4BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849EA069-486F-4600-98DD-19D4098B4BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849EA069-486F-4600-98DD-19D4098B4BB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

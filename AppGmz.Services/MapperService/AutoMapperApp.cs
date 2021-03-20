@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AppGmz.Models.DomainModels;
+using AppGmz.Models.DtoModels;
+using AppGmz.Models.IdentityModels;
+using AutoMapper;
 
 namespace AppGmz.Services.MapperService
 {
@@ -6,11 +10,11 @@ namespace AppGmz.Services.MapperService
     {
         public AutoMapperApp()
         {
-            //CreateMap<CreateNewsRecordDTO, NewsRecord>();
-            //CreateMap<NewsRecord, CreateNewsRecordDTO>();
-            //CreateMap<NewsRecord, FoundNewsRecordDTO>();
-            //CreateMap<IEnumerable<NewsRecord>, IEnumerable<FindNewsRecordDTO>>();
-            //CreateMap<UserRegisterDto, UserApp>();
+            CreateMap<CreateRecordNewsDto, RecordNews>();
+            CreateMap<RecordNews, CreateRecordNewsDto>();
+            CreateMap<RecordNews, FoundRecordNewsDTO>();
+            CreateMap<IEnumerable<RecordNews>, IEnumerable<FindRecordNewsDto>>();
+            CreateMap<UserRegisterDto, AppUser>();
         }
     }
 }
