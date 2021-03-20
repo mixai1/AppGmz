@@ -1,5 +1,6 @@
 ﻿using AppGmz.CQRS.Commands.RecordNewsCommand.Create;
 using AppGmz.CQRS.Commands.RecordNewsCommand.Remove;
+using AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews;
 using AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews;
 using AppGmz.Models.DtoModels;
 using MediatR;
@@ -40,6 +41,26 @@ namespace AppGmzAPI.Controllers
                 _logger.LogError(nameof(RecordNewsController), e);
                 Log.Error(nameof(RecordNewsController), e);
                 return BadRequest("Error");
+            }
+        }
+
+        [Route("find")]
+        [HttpGet]
+        //Get : /api/RecordNews/find
+        public async Task<IActionResult> FindNewsRecord(Guid id)
+        {
+            try
+            {
+                Log.Information(nameof(RecordNewsController.FindNewsRecord));
+                _logger.LogInformation(nameof(RecordNewsController.FindNewsRecord));
+                var result = await _mediator.Send(new FindRecordNews(id));
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Log.Error(nameof(RecordNewsController.FindNewsRecord), e);
+                _logger.LogError(nameof(RecordNewsController.FindNewsRecord), e);
+                return BadRequest();
             }
         }
 
