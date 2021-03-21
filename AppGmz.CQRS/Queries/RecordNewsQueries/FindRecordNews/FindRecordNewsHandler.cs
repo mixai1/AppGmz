@@ -21,24 +21,24 @@ namespace AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews
             _mapper = mapper;
         }
 
-        public async Task<FoundRecordNewsDTO> Handle(FindRecordNews request, CancellationToken cancellationToken)
+        public async Task<FoundRecordNewsDto> Handle(FindRecordNews request, CancellationToken cancellationToken)
         {
             try
             {
                 var result = await _repository.FindById(request.Id);
                 if (result != null)
                 {
-                    var response = _mapper.Map<FoundRecordNewsDTO>(result);
+                    var response = _mapper.Map<FoundRecordNewsDto>(result);
                     return response;
                 }
 
                 _logger.LogError(nameof(FindRecordNewsHandler.Handle));
-                return new FoundRecordNewsDTO();
+                return new FoundRecordNewsDto();
             }
             catch (Exception e)
             {
                 _logger.LogError(nameof(FindRecordNewsHandler.Handle), e);
-                return new FoundRecordNewsDTO();
+                return new FoundRecordNewsDto();
             }
         }
     }

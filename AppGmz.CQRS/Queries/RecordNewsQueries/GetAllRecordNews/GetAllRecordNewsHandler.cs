@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews
 {
-    public class GetAllRecordNewsHandler : IRequestHandler<GetAllRecordNews, IEnumerable<FoundRecordNewsDTO>>
+    public class GetAllRecordNewsHandler : IRequestHandler<GetAllRecordNews, IEnumerable<FoundRecordNewsDto>>
     {
         private readonly IRecordNewsRepository _repository;
         private readonly ILogger<GetAllRecordNewsHandler> _logger;
@@ -23,22 +23,22 @@ namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<FoundRecordNewsDTO>> Handle(GetAllRecordNews request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<FoundRecordNewsDto>> Handle(GetAllRecordNews request, CancellationToken cancellationToken)
         {
             try
             {
                 var result = await _repository.GetAllAsync();
                 if (result != null)
                 {
-                    var response = _mapper.Map<IEnumerable<FoundRecordNewsDTO>>(result);
+                    var response = _mapper.Map<IEnumerable<FoundRecordNewsDto>>(result);
                     return response;
                 }
-                return new List<FoundRecordNewsDTO>();
+                return new List<FoundRecordNewsDto>();
             }
             catch (Exception e)
             {
                 _logger.LogError(nameof(GetAllRecordNewsHandler.Handle), e);
-                return new List<FoundRecordNewsDTO>();
+                return new List<FoundRecordNewsDto>();
             }
         }
     }
