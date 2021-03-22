@@ -16,7 +16,9 @@ services:
            - "5005:5005"
            - "8001:443"
         depends_on:
-           - ms-sql-server 
+           - ms-sql-server
+        volumes: 
+           - ./AppGmzAPI/Logs:/var/log
     ms-sql-server:
         image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
         container_name: ms-sql-database
@@ -27,4 +29,4 @@ services:
         ports:
             - "1433:1433"
         volumes: 
-            - ../mssql/data:/var/lib/mssql/data
+            - ./mssqldata:/var/opt/mssql
