@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews
 {
-    public class GetAllRecordNews : IRequest<IEnumerable<FoundRecordNewsDTO>>
+    public class GetAllRecordNews : IRequest<IEnumerable<FoundRecordNewsDto>>
     {
         
     }

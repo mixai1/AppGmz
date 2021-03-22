@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AppGmz.Models.DtoModels
 {
-    public class FoundRecordNewsDTO
+    public class FoundRecordNewsDto
     {
         [Required]
         public Guid Id { get; set; }
