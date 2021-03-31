@@ -28,6 +28,7 @@ namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews
             try
             {
                 var result = await _repository.GetSomeRecords(request.Number);
+
                 if (result != null)
                 {
                     var response = _mapper.Map<IEnumerable<FoundRecordNewsDto>>(result);

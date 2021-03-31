@@ -26,7 +26,7 @@ namespace AppGmzAPI.Controllers
             _logger = logger;
         }
 
-        [Route("AllRecords")]
+        [Route("allRecords")]
         [HttpGet]
         //GET : api/RecordNews/allRecords
         public async Task<IActionResult> GetAllNewsRecord()
@@ -45,9 +45,9 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("someRecord/{numbers}")]
+        [Route("someRecords/{numbers}")]
         [HttpGet]
-        // GET: api/RecordNews/someRecord
+        // GET: api/RecordNews/someRecords
         public async Task<IActionResult> GetSomeRecords(int numbers)
         {
             try
@@ -59,14 +59,15 @@ namespace AppGmzAPI.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                Log.Error(nameof(RecordNewsController.FindNewsRecord), e);
+                _logger.LogError(nameof(RecordNewsController.FindNewsRecord), e);
+                return BadRequest("Error");
             }
         }
 
-        [Route("findRecord")]
+        [Route("findRecord/{id}")]
         [HttpGet]
-        //Get : /api/RecordNews/findRecord
+        //Get : /api/RecordNews/findRecord/{id}
         public async Task<IActionResult> FindNewsRecord(Guid id)
         {
             try
@@ -80,7 +81,7 @@ namespace AppGmzAPI.Controllers
             {
                 Log.Error(nameof(RecordNewsController.FindNewsRecord), e);
                 _logger.LogError(nameof(RecordNewsController.FindNewsRecord), e);
-                return BadRequest();
+                return BadRequest("Error");
             }
         }
 
@@ -100,7 +101,7 @@ namespace AppGmzAPI.Controllers
                     {
                         return Ok();
                     }
-                    return BadRequest();
+                    return BadRequest("Error");
                 }
                 Log.Error(nameof(RecordNewsController.CreateNewsRecord));
                 _logger.LogError(nameof(RecordNewsController.CreateNewsRecord));
@@ -130,7 +131,7 @@ namespace AppGmzAPI.Controllers
                     {
                         return Ok();
                     }
-                    return BadRequest();
+                    return BadRequest("Error");
                 }
 
                 Log.Error(nameof(RecordNewsController.RemoveNewsRecord));

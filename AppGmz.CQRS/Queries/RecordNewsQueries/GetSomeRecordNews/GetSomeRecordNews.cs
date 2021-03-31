@@ -1,6 +1,7 @@
 ﻿using AppGmz.Models.DtoModels;
 using MediatR;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews
 {

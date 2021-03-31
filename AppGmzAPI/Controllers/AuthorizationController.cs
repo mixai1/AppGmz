@@ -50,12 +50,11 @@ namespace AppGmzAPI.Controllers
                 if (TryValidateModel(userRegisterDto))
                 {
                     var newUser = _mapper.Map<AppUser>(userRegisterDto);
-
                     var result = await _userManager.CreateAsync(newUser, userRegisterDto.Password);
 
                     if (!result.Succeeded)
                     {
-                        return BadRequest(result.Errors);
+                        return BadRequest(result);
                     }
 
                     if (userRegisterDto.UserName == "Super_Admin")
@@ -72,7 +71,6 @@ namespace AppGmzAPI.Controllers
                         {
                             await _roleManager.CreateAsync(new AppRole() { Name = "User" });
                         }
-
                         await _userManager.AddToRoleAsync(newUser, "User");
                     }
 

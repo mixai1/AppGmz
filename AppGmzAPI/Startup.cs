@@ -59,7 +59,8 @@ namespace AppGmzAPI
             //TODO: Change ConnectionString for DockerContainer!!!
             services.AddDbContext<AppDbContext>(op =>
             {
-                op.UseSqlServer($"Server={server},{port};Initial Catalog={catalog};User ID={user};Password={password}");
+                //op.UseSqlServer($"Server={server},{port};Initial Catalog={catalog};User ID={user};Password={password}");
+                op.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddIdentity<AppUser, AppRole>(opts =>
                 {

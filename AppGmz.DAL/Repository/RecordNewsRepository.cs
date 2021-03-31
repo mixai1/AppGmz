@@ -23,13 +23,14 @@ namespace AppGmz.DAL.Repository
         {
             try
             {
-                var result = await _appDbContext.RecordNewses.TakeLast(numbers).ToListAsync();
-                return result ?? new List<RecordNews>();
+                var result = await _appDbContext.RecordNewses.Take(numbers).ToListAsync();
+                return result;
+
             }
             catch (Exception e)
             {
                 Log.Error(nameof(this.GetSomeRecords), e);
-                return new List<RecordNews>();
+                return new EnumerableQuery<RecordNews>(new List<RecordNews>());
             }
         }
     }
