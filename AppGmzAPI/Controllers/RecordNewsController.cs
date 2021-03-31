@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.Threading.Tasks;
+using AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews;
 
 namespace AppGmzAPI.Controllers
 {
@@ -25,9 +26,9 @@ namespace AppGmzAPI.Controllers
             _logger = logger;
         }
 
-        [Route("getAll")]
+        [Route("AllRecords")]
         [HttpGet]
-        //GET : api/RecordNews/getAll
+        //GET : api/RecordNews/allRecords
         public async Task<IActionResult> GetAllNewsRecord()
         {
             try
@@ -44,9 +45,28 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("find")]
+        [Route("someRecord/{numbers}")]
         [HttpGet]
-        //Get : /api/RecordNews/find
+        // GET: api/RecordNews/someRecord
+        public async Task<IActionResult> GetSomeRecords(int numbers)
+        {
+            try
+            {
+                Log.Information(nameof(RecordNewsController.GetSomeRecords));
+                _logger.LogInformation(nameof(RecordNewsController.GetSomeRecords));
+                var result = await _mediator.Send(new GetSomeRecordNews(numbers));
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [Route("findRecord")]
+        [HttpGet]
+        //Get : /api/RecordNews/findRecord
         public async Task<IActionResult> FindNewsRecord(Guid id)
         {
             try
@@ -64,9 +84,9 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("create")]
+        [Route("createRecord")]
         [HttpPost]
-        //POST : /api/RecordNews/create
+        //POST : /api/RecordNews/createRecord
         public async Task<IActionResult> CreateNewsRecord(CreateRecordNewsDto newsRecordDto)
         {
             try
@@ -94,9 +114,9 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("remove")]
-        [HttpPost]
-        //POST : /api/RecordNews/remove
+        [Route("removeRecord")]
+        [HttpDelete]
+        //Delete : /api/RecordNews/removeRecord
         public async Task<IActionResult> RemoveNewsRecord(RemoveRecordNewsDto removeNewsRecordDto)
         {
             try

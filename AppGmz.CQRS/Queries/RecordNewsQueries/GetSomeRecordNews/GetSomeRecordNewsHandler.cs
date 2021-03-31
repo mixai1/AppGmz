@@ -8,26 +8,26 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews
+namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews
 {
-    public class GetAllRecordNewsHandler : IRequestHandler<GetAllRecordNews, IEnumerable<FoundRecordNewsDto>>
+    public class GetSomeRecordNewsHandler : IRequestHandler<GetSomeRecordNews, IEnumerable<FoundRecordNewsDto>>
     {
         private readonly IRecordNewsRepository _repository;
-        private readonly ILogger<GetAllRecordNewsHandler> _logger;
+        private readonly ILogger<GetSomeRecordNewsHandler> _logger;
         private readonly IMapper _mapper;
 
-        public GetAllRecordNewsHandler(IRecordNewsRepository repository, ILogger<GetAllRecordNewsHandler> logger, IMapper mapper)
+        public GetSomeRecordNewsHandler(IRecordNewsRepository repository, ILogger<GetSomeRecordNewsHandler> logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<FoundRecordNewsDto>> Handle(GetAllRecordNews request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<FoundRecordNewsDto>> Handle(GetSomeRecordNews request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _repository.GetAllAsync();
+                var result = await _repository.GetSomeRecords(request.Number);
                 if (result != null)
                 {
                     var response = _mapper.Map<IEnumerable<FoundRecordNewsDto>>(result);
@@ -37,7 +37,7 @@ namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews
             }
             catch (Exception e)
             {
-                _logger.LogError(nameof(GetAllRecordNewsHandler.Handle), e);
+                _logger.LogError(nameof(GetSomeRecordNewsHandler.Handle), e);
                 return new List<FoundRecordNewsDto>();
             }
         }

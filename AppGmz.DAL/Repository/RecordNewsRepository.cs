@@ -1,6 +1,12 @@
 ﻿using AppGmz.Core;
 using AppGmz.Models.DomainModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppGmz.DAL.Repository
 {
@@ -13,5 +19,18 @@ namespace AppGmz.DAL.Repository
             _appDbContext = appDbContext;
         }
 
+        public async Task<IEnumerable<RecordNews>> GetSomeRecords(int numbers)
+        {
+            try
+            {
+                var result = await _appDbContext.RecordNewses.TakeLast(numbers).ToListAsync();
+                return result ?? new List<RecordNews>();
+            }
+            catch (Exception e)
+            {
+                Log.Error(nameof(this.GetSomeRecords), e);
+                return new List<RecordNews>();
+            }
+        }
     }
 }

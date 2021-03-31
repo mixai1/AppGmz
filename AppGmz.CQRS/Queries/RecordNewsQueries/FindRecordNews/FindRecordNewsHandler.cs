@@ -5,10 +5,11 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 
 namespace AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews
 {
-    public class FindRecordNewsHandler
+    public class FindRecordNewsHandler : IRequestHandler<FindRecordNews,FoundRecordNewsDto>
     {
         private readonly IRecordNewsRepository _repository;
         private readonly ILogger<FindRecordNewsHandler> _logger;

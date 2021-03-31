@@ -36,7 +36,7 @@ namespace AppGmzAPI
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
-                .WriteTo.File($@"Logs/log{DateTime.UtcNow.Date.ToShortDateString()}.txt")
+                .WriteTo.File($@"Logs/{DateTime.UtcNow.Date.ToString("ddMMyyyy")}log.txt")
                 .Enrich.WithThreadId()
                 .Enrich.WithMachineName()
                 .CreateLogger();
