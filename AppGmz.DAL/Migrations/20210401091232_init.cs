@@ -52,7 +52,7 @@ namespace AppGmz.DAL.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Header = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubTitles = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShortDescription = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

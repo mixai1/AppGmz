@@ -13,6 +13,7 @@ namespace AppGmz.Services.MapperService
             CreateMap<CreateRecordNewsDto, RecordNews>();
             CreateMap<RecordNews, CreateRecordNewsDto>();
             CreateMap<RecordNews, FoundRecordNewsDto>();
+            CreateMap<RecordNews, FullRecordNewsDto>();
             CreateMap<IEnumerable<RecordNews>, IEnumerable<FindRecordNewsDto>>();
             CreateMap<UserRegisterDto, AppUser>();
         }

@@ -7,8 +7,9 @@ namespace AppGmz.Models.DtoModels
     {
         [Required]
         public string Header { get; set; }
+        [MaxLength(120)]
         [Required]
-        public string SubTitles { get; set; }
+        public string ShortDescription { get; set; }
 
         [Required]
         public string Body { get; set; }

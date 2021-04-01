@@ -56,7 +56,6 @@ namespace AppGmzAPI.Controllers
                     {
                         return BadRequest(result);
                     }
-
                     if (userRegisterDto.UserName == "Super_Admin")
                     {
                         if (!await _roleManager.RoleExistsAsync("Admin"))
@@ -73,7 +72,6 @@ namespace AppGmzAPI.Controllers
                         }
                         await _userManager.AddToRoleAsync(newUser, "User");
                     }
-
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(newUser, false);

@@ -2,6 +2,7 @@
 using AppGmz.CQRS.Commands.RecordNewsCommand.Remove;
 using AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews;
 using AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews;
+using AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews;
 using AppGmz.Models.DtoModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.Threading.Tasks;
-using AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews;
 
 namespace AppGmzAPI.Controllers
 {
