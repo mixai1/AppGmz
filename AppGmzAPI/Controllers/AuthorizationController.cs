@@ -50,14 +50,12 @@ namespace AppGmzAPI.Controllers
                 if (TryValidateModel(userRegisterDto))
                 {
                     var newUser = _mapper.Map<AppUser>(userRegisterDto);
-
                     var result = await _userManager.CreateAsync(newUser, userRegisterDto.Password);
 
                     if (!result.Succeeded)
                     {
-                        return BadRequest(result.Errors);
+                        return BadRequest(result);
                     }
-
                     if (userRegisterDto.UserName == "Super_Admin")
                     {
                         if (!await _roleManager.RoleExistsAsync("Admin"))
@@ -72,10 +70,8 @@ namespace AppGmzAPI.Controllers
                         {
                             await _roleManager.CreateAsync(new AppRole() { Name = "User" });
                         }
-
                         await _userManager.AddToRoleAsync(newUser, "User");
                     }
-
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(newUser, false);
@@ -132,7 +128,7 @@ namespace AppGmzAPI.Controllers
                     new Claim("UserId", userApp.Id.ToString() ),
                     new Claim(new IdentityOptions().ClaimsIdentity.RoleClaimType,role.FirstOrDefault()),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(_optionsApp.JWT_Secret)),

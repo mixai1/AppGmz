@@ -6,6 +6,6 @@ namespace AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews
 {
     public class GetAllRecordNews : IRequest<IEnumerable<FoundRecordNewsDto>>
     {
-        
+
     }
 }

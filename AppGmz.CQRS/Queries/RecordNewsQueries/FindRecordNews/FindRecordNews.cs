@@ -4,7 +4,7 @@ using System;
 
 namespace AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews
 {
-    public class FindRecordNews : IRequest<FoundRecordNewsDto>
+    public class FindRecordNews : IRequest<FullRecordNewsDto>
     {
         public Guid Id { get; }
 

@@ -18,7 +18,7 @@ services:
         depends_on:
            - ms-sql-server
         volumes: 
-           - ./AppGmzAPI/Logs:/var/log
+           - ./AppGmzAPI/Logs:/app/Logs
     ms-sql-server:
         image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
         container_name: ms-sql-database
@@ -28,5 +28,5 @@ services:
             MSSQL_PID: "Express"
         ports:
             - "1433:1433"
-        volumes: 
-            - ./mssqldata:/var/opt/mssql
+      #   volumes: 
+      #      - ./mssqldata:/var/opt/mssql

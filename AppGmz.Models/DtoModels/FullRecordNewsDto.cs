@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppGmz.Models.DomainModels
+namespace AppGmz.Models.DtoModels
 {
-    public class RecordNews : EntityBase
+    public class FullRecordNewsDto
     {
+        [Required]
+        public Guid Id { get; set; }
         [Required]
         public string Header { get; set; }
         [MaxLength(120)]

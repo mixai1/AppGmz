@@ -10,9 +10,8 @@ namespace AppGmz.Models.DtoModels
 
         [Required]
         public string Header { get; set; }
-
         [Required]
-        public string Body { get; set; }
+        public string ShortDescription { get; set; }
 
         public DateTime DateTime { get; set; }
     }

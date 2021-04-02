@@ -5,10 +5,11 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 
 namespace AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews
 {
-    public class FindRecordNewsHandler
+    public class FindRecordNewsHandler : IRequestHandler<FindRecordNews,FullRecordNewsDto>
     {
         private readonly IRecordNewsRepository _repository;
         private readonly ILogger<FindRecordNewsHandler> _logger;
@@ -21,24 +22,24 @@ namespace AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews
             _mapper = mapper;
         }
 
-        public async Task<FoundRecordNewsDto> Handle(FindRecordNews request, CancellationToken cancellationToken)
+        public async Task<FullRecordNewsDto> Handle(FindRecordNews request, CancellationToken cancellationToken)
         {
             try
             {
                 var result = await _repository.FindById(request.Id);
                 if (result != null)
                 {
-                    var response = _mapper.Map<FoundRecordNewsDto>(result);
+                    var response = _mapper.Map<FullRecordNewsDto>(result);
                     return response;
                 }
 
                 _logger.LogError(nameof(FindRecordNewsHandler.Handle));
-                return new FoundRecordNewsDto();
+                return new FullRecordNewsDto();
             }
             catch (Exception e)
             {
                 _logger.LogError(nameof(FindRecordNewsHandler.Handle), e);
-                return new FoundRecordNewsDto();
+                return new FullRecordNewsDto();
             }
         }
     }

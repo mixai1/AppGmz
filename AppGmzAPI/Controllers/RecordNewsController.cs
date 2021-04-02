@@ -2,6 +2,7 @@
 using AppGmz.CQRS.Commands.RecordNewsCommand.Remove;
 using AppGmz.CQRS.Queries.RecordNewsQueries.FindRecordNews;
 using AppGmz.CQRS.Queries.RecordNewsQueries.GetAllRecordNews;
+using AppGmz.CQRS.Queries.RecordNewsQueries.GetSomeRecordNews;
 using AppGmz.Models.DtoModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,9 @@ namespace AppGmzAPI.Controllers
             _logger = logger;
         }
 
-        [Route("getAll")]
+        [Route("allRecords")]
         [HttpGet]
-        //GET : api/RecordNews/getAll
+        //GET : api/RecordNews/allRecords
         public async Task<IActionResult> GetAllNewsRecord()
         {
             try
@@ -44,9 +45,29 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("find")]
+        [Route("someRecords/{numbers}")]
         [HttpGet]
-        //Get : /api/RecordNews/find
+        // GET: api/RecordNews/someRecords/{number}
+        public async Task<IActionResult> GetSomeRecords(int numbers)
+        {
+            try
+            {
+                Log.Information(nameof(RecordNewsController.GetSomeRecords));
+                _logger.LogInformation(nameof(RecordNewsController.GetSomeRecords));
+                var result = await _mediator.Send(new GetSomeRecordNews(numbers));
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Log.Error(nameof(RecordNewsController.FindNewsRecord), e);
+                _logger.LogError(nameof(RecordNewsController.FindNewsRecord), e);
+                return BadRequest("Error");
+            }
+        }
+
+        [Route("findRecord/{id}")]
+        [HttpGet]
+        //Get : /api/RecordNews/findRecord/{id}
         public async Task<IActionResult> FindNewsRecord(Guid id)
         {
             try
@@ -60,13 +81,13 @@ namespace AppGmzAPI.Controllers
             {
                 Log.Error(nameof(RecordNewsController.FindNewsRecord), e);
                 _logger.LogError(nameof(RecordNewsController.FindNewsRecord), e);
-                return BadRequest();
+                return BadRequest("Error");
             }
         }
 
-        [Route("create")]
+        [Route("createRecord")]
         [HttpPost]
-        //POST : /api/RecordNews/create
+        //POST : /api/RecordNews/createRecord
         public async Task<IActionResult> CreateNewsRecord(CreateRecordNewsDto newsRecordDto)
         {
             try
@@ -80,7 +101,7 @@ namespace AppGmzAPI.Controllers
                     {
                         return Ok();
                     }
-                    return BadRequest();
+                    return BadRequest("Error");
                 }
                 Log.Error(nameof(RecordNewsController.CreateNewsRecord));
                 _logger.LogError(nameof(RecordNewsController.CreateNewsRecord));
@@ -94,9 +115,9 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("remove")]
-        [HttpPost]
-        //POST : /api/RecordNews/remove
+        [Route("removeRecord")]
+        [HttpDelete]
+        //Delete : /api/RecordNews/removeRecord
         public async Task<IActionResult> RemoveNewsRecord(RemoveRecordNewsDto removeNewsRecordDto)
         {
             try
@@ -110,7 +131,7 @@ namespace AppGmzAPI.Controllers
                     {
                         return Ok();
                     }
-                    return BadRequest();
+                    return BadRequest("Error");
                 }
 
                 Log.Error(nameof(RecordNewsController.RemoveNewsRecord));

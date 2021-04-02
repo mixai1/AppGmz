@@ -3,9 +3,9 @@ using AppGmz.Models.DomainModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using System;
 using System.Linq;
-using Serilog;
 
 namespace AppGmz.Services.PrepDb
 {
@@ -32,8 +32,17 @@ namespace AppGmz.Services.PrepDb
                     Body = "First text",
                     DateTime = DateTime.Now,
                     Header = "First Header",
-                    SubTitles = "Description first record"
-                });
+                    ShortDescription = "Description first record"
+                }, 
+                    new RecordNews()
+                    {
+                        Body = "Lorem ipsum dolor sit amet consectetur adipisicing elit." +
+                               " Quo, inventore! Ipsa, deserunt. Magni ducimus, ratione aspernatur sunt dicta itaque, accusamus harum odio",
+                               DateTime = DateTime.Now,
+                        Header = "Second Header Test Header",
+                        ShortDescription = "Description second record"
+                    });
+
                 Log.Information(nameof(SeedData), "add data is completed");
                 context.SaveChanges();
             }
