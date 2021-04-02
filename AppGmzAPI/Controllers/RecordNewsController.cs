@@ -47,7 +47,7 @@ namespace AppGmzAPI.Controllers
 
         [Route("someRecords/{numbers}")]
         [HttpGet]
-        // GET: api/RecordNews/someRecords
+        // GET: api/RecordNews/someRecords/{number}
         public async Task<IActionResult> GetSomeRecords(int numbers)
         {
             try

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace AppGmzAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class UserProfileController : ControllerBase
     {
@@ -24,10 +25,8 @@ namespace AppGmzAPI.Controllers
             _logger = logger;
         }
 
-        [Authorize]
-        [Route("userProfile")]
         [HttpGet]
-        // Get : /api/UserProfile/userProfile
+        // Get : /api/UserProfile/
         public async Task<UserProfileDto> GetUserProfile()
         {
             try

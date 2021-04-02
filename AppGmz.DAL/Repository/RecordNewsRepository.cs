@@ -23,7 +23,7 @@ namespace AppGmz.DAL.Repository
         {
             try
             {
-                var result = await _appDbContext.RecordNewses.Take(numbers).ToListAsync();
+                var result = await _appDbContext.RecordNewses.OrderByDescending(x=>x.DateTime).Take(numbers).ToListAsync();
                 return result;
 
             }

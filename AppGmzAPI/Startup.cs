@@ -70,7 +70,6 @@ namespace AppGmzAPI
                 })
                 .AddEntityFrameworkStores<AppDbContext>();
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
-            Console.WriteLine(key);
             services.AddAuthentication(opt =>
                 {
                     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -117,8 +116,11 @@ namespace AppGmzAPI
             });
             app.UseHttpsRedirection();
             PrepDb.SetDate(app);
+            
             app.UseRouting();
             app.UseSerilogRequestLogging();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

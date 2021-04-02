@@ -128,7 +128,7 @@ namespace AppGmzAPI.Controllers
                     new Claim("UserId", userApp.Id.ToString() ),
                     new Claim(new IdentityOptions().ClaimsIdentity.RoleClaimType,role.FirstOrDefault()),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(_optionsApp.JWT_Secret)),
