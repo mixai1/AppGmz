@@ -1,0 +1,996 @@
+2021-04-15 13:31:25.736 +03:00 [INF] Application started
+2021-04-15 13:31:36.082 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 13:31:38.885 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:31:41.763 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 13:31:41.835 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 13:31:41.846 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 13:31:41.852 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 13:31:41.901 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 13:31:41.954 +03:00 [INF] Applying migration '20210415090456_add persone and vacansion'.
+2021-04-15 13:31:42.069 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Persons] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [Age] int NOT NULL,
+    [Position] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Persons] PRIMARY KEY ([Id])
+);
+2021-04-15 13:31:42.080 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Vacancies] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(120) NOT NULL,
+    [Salary] int NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [Requirements] nvarchar(max) NULL,
+    [WorkExperience] nvarchar(max) NULL,
+    [DatePublication] datetime2 NOT NULL,
+    CONSTRAINT [PK_Vacancies] PRIMARY KEY ([Id])
+);
+2021-04-15 13:31:42.116 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20210415090456_add persone and vacansion', N'5.0.4');
+2021-04-15 13:31:42.139 +03:00 [INF] Applying migration '20210415095450_add url property in newsRecord'.
+2021-04-15 13:31:42.182 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [RecordNewses] ADD [ImageURL] nvarchar(max) NULL;
+2021-04-15 13:31:42.193 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20210415095450_add url property in newsRecord', N'5.0.4');
+2021-04-15 13:31:42.710 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 13:31:42.726 +03:00 [INF] SeedData
+2021-04-15 13:31:43.255 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 13:31:43.259 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 13:31:43.263 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 13:31:43.267 +03:00 [INF] Hosting environment: Development
+2021-04-15 13:31:43.271 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 13:37:12.670 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/Vacancies/vacancies application/json 183
+2021-04-15 13:37:12.965 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI)'
+2021-04-15 13:37:13.022 +03:00 [INF] Route matched with {action = "CreateVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateVacancies(AppGmz.Models.DtoModels.VacanciesDTO.CreateVacanciesDto) on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:37:23.691 +03:00 [INF] CreateVacancies
+2021-04-15 13:37:24.841 +03:00 [INF] CreateVacancies
+2021-04-15 13:37:26.597 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:37:27.006 +03:00 [INF] Executed DbCommand (60ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 120), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Vacancies] ([Id], [DatePublication], [Description], [Name], [Requirements], [Salary], [WorkExperience])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2021-04-15 13:37:36.502 +03:00 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200
+2021-04-15 13:37:36.518 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI) in 23476.6046ms
+2021-04-15 13:37:36.525 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI)'
+2021-04-15 13:37:36.539 +03:00 [INF] HTTP POST /api/Vacancies/vacancies responded 200 in 23745.5716 ms
+2021-04-15 13:37:38.919 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/Vacancies/vacancies application/json 183 - 200 0 - 26255.5870ms
+2021-04-15 13:38:13.273 +03:00 [INF] Application started
+2021-04-15 13:38:17.359 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 13:38:20.363 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:38:21.148 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 13:38:21.265 +03:00 [INF] Executed DbCommand (82ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 13:38:21.275 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 13:38:21.280 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 13:38:21.311 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 13:38:21.350 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 13:38:21.875 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 13:38:21.884 +03:00 [INF] SeedData
+2021-04-15 13:38:22.375 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 13:38:22.385 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 13:38:22.390 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 13:38:22.395 +03:00 [INF] Hosting environment: Development
+2021-04-15 13:38:22.398 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 13:39:34.862 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/Vacancies/vacancies application/json 185
+2021-04-15 13:39:35.087 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI)'
+2021-04-15 13:39:35.136 +03:00 [INF] Route matched with {action = "CreateVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateVacancies(AppGmz.Models.DtoModels.VacanciesDTO.CreateVacanciesDto) on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:39:39.264 +03:00 [INF] CreateVacancies
+2021-04-15 13:39:39.271 +03:00 [INF] CreateVacancies
+2021-04-15 13:39:39.709 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:39:40.180 +03:00 [INF] Executed DbCommand (68ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 120), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Vacancies] ([Id], [DatePublication], [Description], [Name], [Requirements], [Salary], [WorkExperience])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2021-04-15 13:39:41.519 +03:00 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200
+2021-04-15 13:39:41.538 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI) in 6383.0066ms
+2021-04-15 13:39:41.545 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI)'
+2021-04-15 13:39:41.561 +03:00 [INF] HTTP POST /api/Vacancies/vacancies responded 200 in 6602.4952 ms
+2021-04-15 13:39:41.593 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/Vacancies/vacancies application/json 185 - 200 0 - 6733.9417ms
+2021-04-15 13:39:58.923 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies application/json 185
+2021-04-15 13:39:58.940 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 13:39:58.951 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:39:58.960 +03:00 [INF] GetAllVacancies
+2021-04-15 13:39:59.053 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:39:59.106 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 13:39:59.167 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 13:39:59.542 +03:00 [ERR] Handle
+2021-04-15 13:39:59.558 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 13:39:59.594 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 636.1221ms
+2021-04-15 13:39:59.598 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 13:39:59.603 +03:00 [INF] HTTP GET /api/Vacancies/vacancies responded 200 in 664.4952 ms
+2021-04-15 13:39:59.612 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies application/json 185 - 200 - application/json;+charset=utf-8 689.2982ms
+2021-04-15 13:40:12.333 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies application/json 185
+2021-04-15 13:40:12.343 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 13:40:12.348 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:40:22.068 +03:00 [INF] GetAllVacancies
+2021-04-15 13:40:24.034 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:40:24.050 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 13:40:24.295 +03:00 [ERR] Handle
+2021-04-15 13:40:58.740 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 13:40:58.758 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 46400.8613ms
+2021-04-15 13:40:58.769 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 13:40:58.781 +03:00 [INF] HTTP GET /api/Vacancies/vacancies responded 200 in 46441.4295 ms
+2021-04-15 13:40:58.787 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies application/json 185 - 200 - application/json;+charset=utf-8 46454.4838ms
+2021-04-15 13:41:06.416 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/Vacancies/vacancies application/json 185
+2021-04-15 13:41:06.419 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI)'
+2021-04-15 13:41:06.424 +03:00 [INF] Route matched with {action = "CreateVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateVacancies(AppGmz.Models.DtoModels.VacanciesDTO.CreateVacanciesDto) on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:41:17.347 +03:00 [INF] CreateVacancies
+2021-04-15 13:41:17.351 +03:00 [INF] CreateVacancies
+2021-04-15 13:41:17.356 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:41:17.372 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 120), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Vacancies] ([Id], [DatePublication], [Description], [Name], [Requirements], [Salary], [WorkExperience])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2021-04-15 13:41:18.221 +03:00 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200
+2021-04-15 13:41:18.227 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI) in 11788.791ms
+2021-04-15 13:41:18.233 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.CreateVacancies (AppGmzAPI)'
+2021-04-15 13:41:18.237 +03:00 [INF] HTTP POST /api/Vacancies/vacancies responded 200 in 11818.1761 ms
+2021-04-15 13:41:18.245 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/Vacancies/vacancies application/json 185 - 200 0 - 11829.7743ms
+2021-04-15 13:47:13.034 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/e7c4a5e5-d8ae-43ea-58f2-08d8fffa766e application/json 185
+2021-04-15 13:47:13.057 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetDetailVacancies (AppGmzAPI)'
+2021-04-15 13:47:13.069 +03:00 [INF] Route matched with {action = "GetDetailVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetDetailVacancies(System.Guid) on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:47:13.086 +03:00 [INF] GetDetailVacancies
+2021-04-15 13:47:13.096 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:47:13.265 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+WHERE [v].[Id] = @__get_Item_0
+2021-04-15 13:47:13.289 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.VacanciesDTO.DetailVacanciesDto'.
+2021-04-15 13:47:13.317 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetDetailVacancies (AppGmzAPI) in 233.6126ms
+2021-04-15 13:47:13.320 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetDetailVacancies (AppGmzAPI)'
+2021-04-15 13:47:13.329 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/e7c4a5e5-d8ae-43ea-58f2-08d8fffa766e responded 200 in 272.5266 ms
+2021-04-15 13:47:13.336 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/e7c4a5e5-d8ae-43ea-58f2-08d8fffa766e application/json 185 - 200 - application/json;+charset=utf-8 302.3581ms
+2021-04-15 13:47:20.839 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/e7c4a5e5-d8ae-43ea-58f2-08d8fffa766e application/json 185
+2021-04-15 13:47:20.843 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetDetailVacancies (AppGmzAPI)'
+2021-04-15 13:47:20.847 +03:00 [INF] Route matched with {action = "GetDetailVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetDetailVacancies(System.Guid) on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:47:20.855 +03:00 [INF] GetDetailVacancies
+2021-04-15 13:47:20.859 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:47:20.880 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+WHERE [v].[Id] = @__get_Item_0
+2021-04-15 13:47:20.896 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.VacanciesDTO.DetailVacanciesDto'.
+2021-04-15 13:47:20.901 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetDetailVacancies (AppGmzAPI) in 46.5293ms
+2021-04-15 13:47:20.905 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetDetailVacancies (AppGmzAPI)'
+2021-04-15 13:47:20.912 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/e7c4a5e5-d8ae-43ea-58f2-08d8fffa766e responded 200 in 68.3100 ms
+2021-04-15 13:47:20.917 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/e7c4a5e5-d8ae-43ea-58f2-08d8fffa766e application/json 185 - 200 - application/json;+charset=utf-8 78.3693ms
+2021-04-15 13:47:44.345 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 13:47:44.361 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 13:47:44.364 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 13:47:49.554 +03:00 [INF] GetAllVacancies
+2021-04-15 13:47:49.563 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 13:47:49.579 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 13:47:49.696 +03:00 [ERR] Handle
+2021-04-15 13:47:49.699 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 13:47:49.705 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 5328.2008ms
+2021-04-15 13:47:49.714 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 13:47:49.731 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/ responded 200 in 5370.6616 ms
+2021-04-15 13:47:49.738 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185 - 200 - application/json;+charset=utf-8 5392.8753ms
+2021-04-15 14:32:06.585 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 14:32:06.604 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:32:06.617 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 14:32:12.860 +03:00 [INF] GetAllVacancies
+2021-04-15 14:32:23.441 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:32:23.855 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 14:33:20.119 +03:00 [ERR] Handle
+2021-04-15 14:33:20.129 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 14:33:20.135 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 73504.1567ms
+2021-04-15 14:33:20.150 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:33:20.155 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/ responded 200 in 73553.9378 ms
+2021-04-15 14:33:20.164 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185 - 200 - application/json;+charset=utf-8 73581.6586ms
+2021-04-15 14:36:47.950 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 14:36:47.983 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:36:47.995 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 14:36:56.301 +03:00 [INF] GetAllVacancies
+2021-04-15 14:36:57.410 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:36:57.441 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 14:37:18.765 +03:00 [ERR] Handle
+2021-04-15 14:37:21.057 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 14:37:21.087 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 33079.0137ms
+2021-04-15 14:37:21.114 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:37:21.126 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/ responded 200 in 33143.3564 ms
+2021-04-15 14:37:21.138 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185 - 200 - application/json;+charset=utf-8 33188.2281ms
+2021-04-15 14:39:27.220 +03:00 [INF] Application started
+2021-04-15 14:39:32.526 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 14:39:35.211 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:39:36.061 +03:00 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 14:39:36.152 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 14:39:36.174 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 14:39:36.180 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 14:39:36.217 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 14:39:36.262 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 14:39:36.833 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 14:39:36.846 +03:00 [INF] SeedData
+2021-04-15 14:39:37.398 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 14:39:37.402 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 14:39:37.406 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 14:39:37.414 +03:00 [INF] Hosting environment: Development
+2021-04-15 14:39:37.417 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 14:40:30.642 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 14:40:30.976 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:40:31.038 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 14:40:37.794 +03:00 [INF] GetAllVacancies
+2021-04-15 14:40:39.223 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:40:39.273 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 14:40:39.480 +03:00 [INF] Executed DbCommand (99ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 14:44:04.902 +03:00 [INF] Application started
+2021-04-15 14:44:09.874 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 14:44:11.857 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:44:12.443 +03:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 14:44:12.518 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 14:44:12.528 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 14:44:12.532 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 14:44:12.553 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 14:44:12.585 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 14:44:12.897 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 14:44:12.909 +03:00 [INF] SeedData
+2021-04-15 14:44:13.346 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 14:44:13.349 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 14:44:13.352 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 14:44:13.357 +03:00 [INF] Hosting environment: Development
+2021-04-15 14:44:13.361 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 14:44:26.333 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 14:44:26.577 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:44:26.621 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 14:44:30.879 +03:00 [INF] GetAllVacancies
+2021-04-15 14:44:33.894 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:44:33.965 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 14:44:34.138 +03:00 [INF] Executed DbCommand (59ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 14:51:51.333 +03:00 [INF] Application started
+2021-04-15 14:51:54.699 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 14:51:56.367 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:51:56.922 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 14:51:56.979 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 14:51:56.992 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 14:51:56.998 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 14:51:57.023 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 14:51:57.072 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 14:51:57.441 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 14:51:57.451 +03:00 [INF] SeedData
+2021-04-15 14:51:57.860 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 14:51:57.870 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 14:51:57.875 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 14:51:57.881 +03:00 [INF] Hosting environment: Development
+2021-04-15 14:51:57.884 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 14:52:01.428 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 14:52:01.694 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:52:01.729 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 14:52:06.822 +03:00 [INF] GetAllVacancies
+2021-04-15 14:53:20.668 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 14:53:20.715 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 14:53:20.863 +03:00 [INF] Executed DbCommand (53ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 14:55:23.108 +03:00 [ERR] Handle
+2021-04-15 14:55:24.139 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 14:55:24.287 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 202534.8229ms
+2021-04-15 14:55:24.304 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 14:55:24.327 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/ responded 200 in 202755.0084 ms
+2021-04-15 14:55:24.397 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185 - 200 - application/json;+charset=utf-8 202977.0265ms
+2021-04-15 15:05:23.186 +03:00 [INF] Application started
+2021-04-15 15:05:28.419 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 15:05:30.593 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:05:33.064 +03:00 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:05:33.144 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:05:33.158 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:05:33.163 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:05:33.216 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 15:05:33.281 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 15:05:33.976 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 15:05:34.000 +03:00 [INF] SeedData
+2021-04-15 15:05:34.775 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 15:05:34.783 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 15:05:34.812 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 15:05:34.817 +03:00 [INF] Hosting environment: Development
+2021-04-15 15:05:34.828 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 15:09:56.509 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185
+2021-04-15 15:09:56.771 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 15:09:56.809 +03:00 [INF] Route matched with {action = "GetAllVacancies", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllVacancies() on controller AppGmzAPI.Controllers.VacanciesController (AppGmzAPI).
+2021-04-15 15:10:04.673 +03:00 [INF] GetAllVacancies
+2021-04-15 15:10:10.059 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:10:10.111 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 15:10:10.377 +03:00 [INF] Executed DbCommand (76ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [v].[Id], [v].[DatePublication], [v].[Description], [v].[Name], [v].[Requirements], [v].[Salary], [v].[WorkExperience]
+FROM [Vacancies] AS [v]
+2021-04-15 15:10:19.441 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.VacanciesDTO.ShowVacanciesDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:10:19.548 +03:00 [INF] Executed action AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI) in 22723.036ms
+2021-04-15 15:10:19.553 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.VacanciesController.GetAllVacancies (AppGmzAPI)'
+2021-04-15 15:10:19.562 +03:00 [INF] HTTP GET /api/Vacancies/vacancies/ responded 200 in 22947.9871 ms
+2021-04-15 15:10:19.585 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/Vacancies/vacancies/ application/json 185 - 200 - application/json;+charset=utf-8 23079.0353ms
+2021-04-15 15:15:23.644 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/someRecords/4 - -
+2021-04-15 15:15:23.650 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:15:23.709 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/someRecords/4 - - - 307 0 - 64.2581ms
+2021-04-15 15:15:24.129 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/someRecords/4 - -
+2021-04-15 15:15:24.133 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:15:24.143 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI)'
+2021-04-15 15:15:24.178 +03:00 [INF] Route matched with {action = "GetSomeRecords", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSomeRecords(Int32) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:15:24.248 +03:00 [INF] GetSomeRecords
+2021-04-15 15:15:24.254 +03:00 [INF] GetSomeRecords
+2021-04-15 15:15:24.353 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:15:24.633 +03:00 [INF] Executed DbCommand (112ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+ORDER BY [r].[DateTime] DESC
+2021-04-15 15:15:24.680 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:15:24.702 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI) in 508.6013ms
+2021-04-15 15:15:24.706 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI)'
+2021-04-15 15:15:24.710 +03:00 [INF] HTTP GET /api/RecordNews/someRecords/4 responded 200 in 568.7620 ms
+2021-04-15 15:15:24.724 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/someRecords/4 - - - 200 - application/json;+charset=utf-8 594.5940ms
+2021-04-15 15:17:45.157 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/RecordNews/createRecord - -
+2021-04-15 15:17:45.160 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:17:45.165 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5000/api/RecordNews/createRecord - - - 204 0 - 8.0837ms
+2021-04-15 15:17:45.182 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/RecordNews/createRecord application/json 158
+2021-04-15 15:17:45.184 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:17:45.191 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/RecordNews/createRecord application/json 158 - 307 0 - 8.7969ms
+2021-04-15 15:17:45.243 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/RecordNews/createRecord - -
+2021-04-15 15:17:45.247 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:17:45.250 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/RecordNews/createRecord - - - 204 0 - 7.3073ms
+2021-04-15 15:17:45.254 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/RecordNews/createRecord application/json 158
+2021-04-15 15:17:45.259 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:17:45.269 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.CreateNewsRecord (AppGmzAPI)'
+2021-04-15 15:17:45.279 +03:00 [INF] Route matched with {action = "CreateNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateNewsRecord(AppGmz.Models.DtoModels.CreateRecordNewsDto) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:17:49.314 +03:00 [INF] CreateNewsRecord
+2021-04-15 15:17:50.151 +03:00 [INF] CreateNewsRecord
+2021-04-15 15:17:53.833 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:17:54.148 +03:00 [INF] Executed DbCommand (83ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 120)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [RecordNewses] ([Id], [Body], [DateTime], [Header], [ImageUrl], [ShortDescription])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2021-04-15 15:18:02.221 +03:00 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200
+2021-04-15 15:18:02.225 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.CreateNewsRecord (AppGmzAPI) in 16936.1394ms
+2021-04-15 15:18:02.229 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.CreateNewsRecord (AppGmzAPI)'
+2021-04-15 15:18:02.234 +03:00 [INF] HTTP POST /api/RecordNews/createRecord responded 200 in 16967.9206 ms
+2021-04-15 15:18:02.242 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/RecordNews/createRecord application/json 158 - 200 0 - 16987.9392ms
+2021-04-15 15:18:02.353 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:18:02.367 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:18:02.371 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 17.9272ms
+2021-04-15 15:18:02.441 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:18:02.444 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:18:02.448 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:18:02.465 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:18:02.474 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:18:02.480 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:18:02.489 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 15:18:02.503 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:18:02.519 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:18:02.525 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 52.2147ms
+2021-04-15 15:18:02.531 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:18:02.535 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 87.3120 ms
+2021-04-15 15:18:02.544 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 101.9569ms
+2021-04-15 15:19:23.880 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:19:23.905 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:19:23.908 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 28.0022ms
+2021-04-15 15:19:24.413 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:19:24.420 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:19:24.431 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:19:24.464 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:19:24.529 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:19:24.564 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:19:24.724 +03:00 [INF] Executed DbCommand (62ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:19:24.761 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:19:24.813 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 283.8475ms
+2021-04-15 15:19:24.828 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:19:24.847 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 417.5676 ms
+2021-04-15 15:19:24.871 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 458.2786ms
+2021-04-15 15:19:55.179 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/75d6bf8f-9207-4a1e-2c58-08d8f4ee8fcf application/json 127
+2021-04-15 15:19:55.210 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:19:55.220 +03:00 [INF] Route matched with {action = "FindNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FindNewsRecord(System.Guid) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:19:55.229 +03:00 [INF] FindNewsRecord
+2021-04-15 15:19:55.233 +03:00 [INF] FindNewsRecord
+2021-04-15 15:19:55.241 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:19:55.372 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+WHERE [r].[Id] = @__get_Item_0
+2021-04-15 15:19:55.390 +03:00 [ERR] Handle
+2021-04-15 15:19:55.395 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.FullRecordNewsDto'.
+2021-04-15 15:19:55.404 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI) in 177.5667ms
+2021-04-15 15:19:55.408 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:19:55.415 +03:00 [INF] HTTP GET /api/RecordNews/findRecord/75d6bf8f-9207-4a1e-2c58-08d8f4ee8fcf responded 200 in 205.3430 ms
+2021-04-15 15:19:55.422 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/75d6bf8f-9207-4a1e-2c58-08d8f4ee8fcf application/json 127 - 200 - application/json;+charset=utf-8 242.4320ms
+2021-04-15 15:20:32.081 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/allRecords application/json 127
+2021-04-15 15:20:32.105 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:20:32.113 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:20:32.122 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:20:32.129 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:20:32.144 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:20:32.165 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:20:32.188 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 65.5539ms
+2021-04-15 15:20:32.201 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:20:32.205 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 99.6193 ms
+2021-04-15 15:20:32.214 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/allRecords application/json 127 - 200 - application/json;+charset=utf-8 133.5714ms
+2021-04-15 15:22:56.671 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127
+2021-04-15 15:22:56.691 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:22:56.696 +03:00 [INF] Route matched with {action = "FindNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FindNewsRecord(System.Guid) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:22:56.711 +03:00 [INF] FindNewsRecord
+2021-04-15 15:22:56.714 +03:00 [INF] FindNewsRecord
+2021-04-15 15:22:56.721 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:22:56.744 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+WHERE [r].[Id] = @__get_Item_0
+2021-04-15 15:22:56.767 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.FullRecordNewsDto'.
+2021-04-15 15:22:56.771 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI) in 60.8369ms
+2021-04-15 15:22:56.776 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:22:56.785 +03:00 [INF] HTTP GET /api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed responded 200 in 94.0684 ms
+2021-04-15 15:22:56.791 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127 - 200 - application/json;+charset=utf-8 123.5211ms
+2021-04-15 15:23:23.675 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:23:23.699 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:23:23.735 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 60.2520ms
+2021-04-15 15:23:24.233 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:23:24.252 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:23:24.258 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:23:24.264 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:23:24.274 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:23:24.285 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:23:24.308 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:23:24.369 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:23:24.386 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 111.9899ms
+2021-04-15 15:23:24.410 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:23:24.417 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 159.4778 ms
+2021-04-15 15:23:24.430 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 196.6697ms
+2021-04-15 15:23:46.822 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:23:46.849 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:23:47.134 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 311.5893ms
+2021-04-15 15:23:47.180 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:23:47.201 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:23:47.225 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:23:47.268 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:23:47.305 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:23:47.314 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:23:47.337 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:23:47.374 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:23:47.386 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 81.5599ms
+2021-04-15 15:23:47.402 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:23:47.408 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 182.5955 ms
+2021-04-15 15:23:47.419 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 238.0902ms
+2021-04-15 15:25:29.444 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:25:29.865 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:25:29.879 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 435.0685ms
+2021-04-15 15:25:29.927 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:25:29.971 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:25:29.992 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:25:30.008 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:25:30.037 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:25:30.047 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:25:30.086 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:25:30.112 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:25:30.129 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 92.0948ms
+2021-04-15 15:25:30.221 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:25:30.256 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 264.9289 ms
+2021-04-15 15:25:30.266 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 338.9651ms
+2021-04-15 15:26:22.809 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:26:22.825 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:26:22.832 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 22.8873ms
+2021-04-15 15:26:24.115 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:26:24.142 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:26:24.149 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:26:24.154 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:26:24.170 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:26:24.175 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:26:24.194 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:26:24.212 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:26:24.222 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 52.0499ms
+2021-04-15 15:26:24.227 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:26:24.238 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 89.1824 ms
+2021-04-15 15:26:24.256 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 141.5039ms
+2021-04-15 15:26:41.322 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:26:41.325 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:26:41.330 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 8.2506ms
+2021-04-15 15:26:41.437 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:26:41.455 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:26:41.458 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:26:41.467 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:26:41.480 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:26:41.488 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:26:41.516 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:26:41.548 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:26:41.554 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 74.2895ms
+2021-04-15 15:26:41.564 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:26:41.570 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 112.1950 ms
+2021-04-15 15:26:41.595 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 158.2821ms
+2021-04-15 15:26:56.352 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127
+2021-04-15 15:26:56.363 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:26:56.372 +03:00 [INF] Route matched with {action = "FindNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FindNewsRecord(System.Guid) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:26:56.389 +03:00 [INF] FindNewsRecord
+2021-04-15 15:26:56.397 +03:00 [INF] FindNewsRecord
+2021-04-15 15:26:56.402 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:26:56.419 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+WHERE [r].[Id] = @__get_Item_0
+2021-04-15 15:26:56.434 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.FullRecordNewsDto'.
+2021-04-15 15:26:56.442 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI) in 53.1155ms
+2021-04-15 15:26:56.450 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:26:56.465 +03:00 [INF] HTTP GET /api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed responded 200 in 102.1296 ms
+2021-04-15 15:26:56.474 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127 - 200 - application/json;+charset=utf-8 121.7605ms
+2021-04-15 15:27:44.560 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:27:44.568 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:27:44.571 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 11.4122ms
+2021-04-15 15:27:45.011 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:27:45.013 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:27:45.017 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:27:45.023 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:27:45.035 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:27:45.039 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:27:45.066 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:27:45.080 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:27:45.085 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 50.0903ms
+2021-04-15 15:27:45.094 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:27:45.099 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 82.5960 ms
+2021-04-15 15:27:45.105 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 94.4898ms
+2021-04-15 15:27:46.603 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127
+2021-04-15 15:27:46.613 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:27:46.621 +03:00 [INF] Route matched with {action = "FindNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FindNewsRecord(System.Guid) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:27:46.638 +03:00 [INF] FindNewsRecord
+2021-04-15 15:27:46.644 +03:00 [INF] FindNewsRecord
+2021-04-15 15:27:46.648 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:27:46.666 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+WHERE [r].[Id] = @__get_Item_0
+2021-04-15 15:27:46.680 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.FullRecordNewsDto'.
+2021-04-15 15:27:46.685 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI) in 47.6869ms
+2021-04-15 15:27:46.710 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:27:46.717 +03:00 [INF] HTTP GET /api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed responded 200 in 103.6885 ms
+2021-04-15 15:27:46.734 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127 - 200 - application/json;+charset=utf-8 130.6353ms
+2021-04-15 15:28:35.193 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:28:35.203 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:28:35.206 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 13.8408ms
+2021-04-15 15:28:35.862 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:28:35.868 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:28:35.873 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:28:35.880 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:28:36.116 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:28:36.285 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:28:36.320 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:28:36.354 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:28:36.361 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 245.1128ms
+2021-04-15 15:28:36.466 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:28:36.720 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 846.6419 ms
+2021-04-15 15:28:36.727 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 864.9003ms
+2021-04-15 15:28:42.444 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:28:42.448 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:28:42.452 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 8.0662ms
+2021-04-15 15:28:44.382 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:28:44.450 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:28:44.475 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:28:44.483 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:28:44.511 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:28:44.526 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:28:44.827 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:28:44.913 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:28:44.929 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 418.6885ms
+2021-04-15 15:28:44.965 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:28:44.975 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 500.3511 ms
+2021-04-15 15:28:45.009 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 617.6940ms
+2021-04-15 15:28:57.219 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - -
+2021-04-15 15:28:57.346 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:28:57.354 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/allRecords - - - 307 0 - 134.6353ms
+2021-04-15 15:28:57.394 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - -
+2021-04-15 15:28:57.396 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:28:57.405 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:28:57.411 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:28:57.428 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:28:57.444 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:28:57.473 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:28:57.493 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:28:57.498 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 70.0023ms
+2021-04-15 15:28:57.528 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:28:57.537 +03:00 [INF] HTTP GET /api/RecordNews/allRecords responded 200 in 131.4022 ms
+2021-04-15 15:28:57.544 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/allRecords - - - 200 - application/json;+charset=utf-8 150.0174ms
+2021-04-15 15:29:16.514 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127
+2021-04-15 15:29:16.523 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:29:16.530 +03:00 [INF] Route matched with {action = "FindNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FindNewsRecord(System.Guid) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:29:16.546 +03:00 [INF] FindNewsRecord
+2021-04-15 15:29:16.549 +03:00 [INF] FindNewsRecord
+2021-04-15 15:29:16.553 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:29:16.596 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+WHERE [r].[Id] = @__get_Item_0
+2021-04-15 15:29:16.652 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.FullRecordNewsDto'.
+2021-04-15 15:29:16.681 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI) in 136.5208ms
+2021-04-15 15:29:16.700 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:29:16.703 +03:00 [INF] HTTP GET /api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed responded 200 in 179.9197 ms
+2021-04-15 15:29:16.709 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127 - 200 - application/json;+charset=utf-8 194.9842ms
+2021-04-15 15:32:05.391 +03:00 [INF] Application started
+2021-04-15 15:32:09.456 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 15:32:11.612 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:32:12.691 +03:00 [INF] Executed DbCommand (54ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:32:12.986 +03:00 [INF] Executed DbCommand (247ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:32:12.996 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:32:13.002 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:32:13.051 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 15:32:13.082 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 15:32:13.683 +03:00 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 15:32:13.696 +03:00 [INF] SeedData
+2021-04-15 15:32:14.486 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 15:32:14.492 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 15:32:14.497 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 15:32:14.502 +03:00 [INF] Hosting environment: Development
+2021-04-15 15:32:14.505 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 15:32:45.472 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records/4 - -
+2021-04-15 15:32:45.672 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:32:45.743 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records/4 - - - 307 0 - 282.5125ms
+2021-04-15 15:32:46.021 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records/4 - -
+2021-04-15 15:32:46.026 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:32:46.326 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI)'
+2021-04-15 15:32:46.426 +03:00 [INF] Route matched with {action = "GetSomeRecords", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSomeRecords(Int32) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:32:46.477 +03:00 [INF] GetSomeRecords
+2021-04-15 15:32:46.521 +03:00 [INF] GetSomeRecords
+2021-04-15 15:32:46.914 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:32:47.162 +03:00 [INF] Executed DbCommand (55ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+ORDER BY [r].[DateTime] DESC
+2021-04-15 15:32:47.369 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:32:47.461 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI) in 1016.827ms
+2021-04-15 15:32:47.468 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI)'
+2021-04-15 15:32:47.476 +03:00 [INF] HTTP GET /api/RecordNews/records/4 responded 200 in 1327.8668 ms
+2021-04-15 15:32:47.495 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records/4 - - - 200 - application/json;+charset=utf-8 1474.1352ms
+2021-04-15 15:32:59.142 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:32:59.189 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:32:59.214 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 72.0666ms
+2021-04-15 15:32:59.388 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:32:59.392 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:32:59.404 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:32:59.449 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:32:59.459 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:32:59.540 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:32:59.584 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 15:32:59.620 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:32:59.643 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:32:59.652 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 195.0112ms
+2021-04-15 15:32:59.658 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:32:59.665 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 262.2467 ms
+2021-04-15 15:32:59.702 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 313.0324ms
+2021-04-15 15:33:07.493 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127
+2021-04-15 15:33:07.501 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:33:07.510 +03:00 [INF] Route matched with {action = "FindNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FindNewsRecord(System.Guid) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:33:07.532 +03:00 [INF] FindNewsRecord
+2021-04-15 15:33:07.533 +03:00 [INF] FindNewsRecord
+2021-04-15 15:33:07.543 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:33:07.655 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+WHERE [r].[Id] = @__get_Item_0
+2021-04-15 15:33:07.687 +03:00 [INF] Executing OkObjectResult, writing value of type 'AppGmz.Models.DtoModels.FullRecordNewsDto'.
+2021-04-15 15:33:07.695 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI) in 168.8374ms
+2021-04-15 15:33:07.708 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.FindNewsRecord (AppGmzAPI)'
+2021-04-15 15:33:07.713 +03:00 [INF] HTTP GET /api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed responded 200 in 214.3840 ms
+2021-04-15 15:33:07.720 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/RecordNews/findRecord/b5f5b0e0-0346-4c3c-6b29-08d900087eed application/json 127 - 200 - application/json;+charset=utf-8 227.2728ms
+2021-04-15 15:33:44.256 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:33:44.755 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:33:44.885 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 629.2540ms
+2021-04-15 15:33:45.113 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:33:45.180 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:33:45.244 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:33:45.316 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:33:45.384 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:33:45.404 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:33:45.560 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:33:45.599 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:33:45.617 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 232.5791ms
+2021-04-15 15:33:45.796 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:33:45.813 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 568.5222 ms
+2021-04-15 15:33:45.820 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 706.3838ms
+2021-04-15 15:35:03.053 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:35:03.150 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:35:03.158 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 104.5551ms
+2021-04-15 15:35:03.250 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:35:03.271 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:35:03.274 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:35:03.280 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:35:03.293 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:35:03.300 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:35:03.315 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:35:03.333 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:35:03.352 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 57.5054ms
+2021-04-15 15:35:03.393 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:35:03.399 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 124.9452 ms
+2021-04-15 15:35:03.411 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 161.2362ms
+2021-04-15 15:36:59.750 +03:00 [INF] Application started
+2021-04-15 15:37:04.478 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 15:37:06.351 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:37:07.336 +03:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:37:07.610 +03:00 [INF] Executed DbCommand (246ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:37:07.618 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:37:07.624 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:37:07.673 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 15:37:07.710 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 15:37:08.164 +03:00 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 15:37:08.176 +03:00 [INF] SeedData
+2021-04-15 15:37:08.622 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 15:37:08.626 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 15:37:08.630 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 15:37:08.634 +03:00 [INF] Hosting environment: Development
+2021-04-15 15:37:08.639 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 15:37:26.308 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records/4 - -
+2021-04-15 15:37:26.423 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:37:26.479 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records/4 - - - 307 0 - 182.9879ms
+2021-04-15 15:37:26.701 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records/4 - -
+2021-04-15 15:37:26.708 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:37:27.106 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI)'
+2021-04-15 15:37:27.194 +03:00 [INF] Route matched with {action = "GetSomeRecords", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSomeRecords(Int32) on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:37:27.244 +03:00 [INF] GetSomeRecords
+2021-04-15 15:37:27.247 +03:00 [INF] GetSomeRecords
+2021-04-15 15:37:27.626 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:37:27.797 +03:00 [INF] Executed DbCommand (53ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+ORDER BY [r].[DateTime] DESC
+2021-04-15 15:37:28.057 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:37:28.314 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI) in 1096.5074ms
+2021-04-15 15:37:28.327 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetSomeRecords (AppGmzAPI)'
+2021-04-15 15:37:28.345 +03:00 [INF] HTTP GET /api/RecordNews/records/4 responded 200 in 1416.0651 ms
+2021-04-15 15:37:28.359 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records/4 - - - 200 - application/json;+charset=utf-8 1658.2695ms
+2021-04-15 15:37:29.487 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:37:29.529 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:37:29.542 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 54.9573ms
+2021-04-15 15:37:29.726 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:37:29.747 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:37:29.759 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:37:29.769 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:37:29.787 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:37:29.869 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:37:29.881 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results.
+2021-04-15 15:37:29.902 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:37:29.927 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:37:29.975 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 189.8003ms
+2021-04-15 15:37:29.983 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:37:29.993 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 235.2611 ms
+2021-04-15 15:37:30.012 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 286.6288ms
+2021-04-15 15:42:33.157 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:42:33.271 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:42:33.281 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 120.9990ms
+2021-04-15 15:42:33.406 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:42:33.409 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:42:33.418 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:42:33.420 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:42:33.436 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:42:33.441 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:42:33.461 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:42:33.510 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:42:33.520 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 85.1234ms
+2021-04-15 15:42:33.527 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:42:33.536 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 120.7461 ms
+2021-04-15 15:42:33.542 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 135.9967ms
+2021-04-15 15:46:39.089 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:46:39.094 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:46:39.098 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 8.9211ms
+2021-04-15 15:46:39.459 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:46:39.462 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:46:39.467 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:46:39.475 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:46:39.486 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:46:39.499 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:46:39.636 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:46:39.651 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:46:39.661 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 174.9448ms
+2021-04-15 15:46:39.668 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:46:39.682 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 215.7809 ms
+2021-04-15 15:46:39.693 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 241.9682ms
+2021-04-15 15:48:10.794 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - -
+2021-04-15 15:48:10.802 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:48:10.806 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/RecordNews/records - - - 307 0 - 13.6719ms
+2021-04-15 15:48:11.073 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/RecordNews/records - -
+2021-04-15 15:48:11.077 +03:00 [INF] CORS policy execution successful.
+2021-04-15 15:48:11.081 +03:00 [INF] Executing endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:48:11.090 +03:00 [INF] Route matched with {action = "GetAllNewsRecord", controller = "RecordNews"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNewsRecord() on controller AppGmzAPI.Controllers.RecordNewsController (AppGmzAPI).
+2021-04-15 15:48:11.102 +03:00 [INF] GetAllNewsRecord
+2021-04-15 15:48:11.106 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:48:11.131 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_0) [r].[Id], [r].[Body], [r].[DateTime], [r].[Header], [r].[ImageUrl], [r].[ShortDescription]
+FROM [RecordNewses] AS [r]
+2021-04-15 15:48:11.158 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AppGmz.Models.DtoModels.FoundRecordNewsDto, AppGmz.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-04-15 15:48:11.165 +03:00 [INF] Executed action AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI) in 63.7962ms
+2021-04-15 15:48:11.173 +03:00 [INF] Executed endpoint 'AppGmzAPI.Controllers.RecordNewsController.GetAllNewsRecord (AppGmzAPI)'
+2021-04-15 15:48:11.177 +03:00 [INF] HTTP GET /api/RecordNews/records responded 200 in 96.0038 ms
+2021-04-15 15:48:11.187 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/RecordNews/records - - - 200 - application/json;+charset=utf-8 113.9075ms
+2021-04-15 15:53:16.135 +03:00 [INF] Application started
+2021-04-15 15:53:19.998 +03:00 [INF] User profile is available. Using 'C:\Users\fhcty\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-04-15 15:53:21.822 +03:00 [INF] Entity Framework Core 5.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-04-15 15:53:22.424 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:53:22.484 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:53:22.494 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2021-04-15 15:53:22.499 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2021-04-15 15:53:22.540 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2021-04-15 15:53:22.589 +03:00 [INF] No migrations were applied. The database is already up to date.
+2021-04-15 15:53:22.905 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecordNewses] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2021-04-15 15:53:22.915 +03:00 [INF] SeedData
+2021-04-15 15:53:23.368 +03:00 [INF] Now listening on: https://localhost:5001
+2021-04-15 15:53:23.373 +03:00 [INF] Now listening on: http://localhost:5000
+2021-04-15 15:53:23.378 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-04-15 15:53:23.382 +03:00 [INF] Hosting environment: Development
+2021-04-15 15:53:23.385 +03:00 [INF] Content root path: C:\project\AppGmz\AppGmzAPI
+2021-04-15 15:53:47.456 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2021-04-15 15:53:47.672 +03:00 [INF] HTTP GET / responded 404 in 118.9989 ms
+2021-04-15 15:53:47.705 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 247.1297ms
+2021-04-15 15:53:58.081 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger - -
+2021-04-15 15:53:58.089 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger - - - 301 0 - 8.1864ms
+2021-04-15 15:53:58.113 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-04-15 15:53:58.252 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 138.8398ms
+2021-04-15 15:53:58.346 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - -
+2021-04-15 15:53:58.363 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui-bundle.js - -
+2021-04-15 15:53:58.363 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - -
+2021-04-15 15:53:58.494 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-04-15 15:53:58.497 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-04-15 15:53:58.512 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - - - 200 142933 text/css 166.3079ms
+2021-04-15 15:53:58.534 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - - - 200 311804 application/javascript 171.4776ms
+2021-04-15 15:53:58.560 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-04-15 15:53:58.567 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui-bundle.js - - - 200 986342 application/javascript 204.4652ms
+2021-04-15 15:53:59.081 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-04-15 15:53:59.210 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/favicon-32x32.png - -
+2021-04-15 15:53:59.224 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2021-04-15 15:53:59.229 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/favicon-32x32.png - - - 200 628 image/png 18.6635ms
+2021-04-15 15:53:59.489 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 408.5471ms

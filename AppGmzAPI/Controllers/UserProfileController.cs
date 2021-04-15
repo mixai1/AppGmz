@@ -56,5 +56,12 @@ namespace AppGmzAPI.Controllers
                 return new UserProfileDto();
             }
         }
+
+        [HttpPost]
+        // POST : /api/UserProfile/
+        public async Task<IActionResult> SendMessage()
+        {
+            return null;
+        }
     }
 }

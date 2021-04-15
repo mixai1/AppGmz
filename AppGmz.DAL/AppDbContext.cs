@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppGmz.DAL
 {
-    public class AppDbContext : IdentityDbContext<AppUser,AppRole,Guid>
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public DbSet<RecordNews> RecordNewses { get; set; }
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options) { }
+        public DbSet<Vacancies> Vacancies { get; set; }
+        public DbSet<Persons> Persons { get; set; }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     }
 }

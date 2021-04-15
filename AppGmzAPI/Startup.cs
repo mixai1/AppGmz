@@ -35,6 +35,7 @@ namespace AppGmzAPI
             services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
 
             services.AddTransient<IRecordNewsRepository, RecordNewsRepository>();
+            services.AddTransient<IVacanciesRepository, VacanciesRepository>();
 
             services.AddCors();
             services.AddControllers();
