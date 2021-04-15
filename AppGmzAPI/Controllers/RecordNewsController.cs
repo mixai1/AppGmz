@@ -26,9 +26,9 @@ namespace AppGmzAPI.Controllers
             _logger = logger;
         }
 
-        [Route("allRecords")]
+        [Route("records")]
         [HttpGet]
-        //GET : api/RecordNews/allRecords
+        //GET : api/RecordNews/records
         public async Task<IActionResult> GetAllNewsRecord()
         {
             try
@@ -45,7 +45,7 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("someRecords/{numbers}")]
+        [Route("records/{numbers}")]
         [HttpGet]
         // GET: api/RecordNews/someRecords/{number}
         public async Task<IActionResult> GetSomeRecords(int numbers)
@@ -65,7 +65,7 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("findRecord/{id}")]
+        [Route("record/{id}")]
         [HttpGet]
         //Get : /api/RecordNews/findRecord/{id}
         public async Task<IActionResult> FindNewsRecord(Guid id)
@@ -85,7 +85,7 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("createRecord")]
+        [Route("record")]
         [HttpPost]
         //POST : /api/RecordNews/createRecord
         public async Task<IActionResult> CreateNewsRecord(CreateRecordNewsDto newsRecordDto)
@@ -115,7 +115,7 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("removeRecord/{id}")]
+        [Route("record/{id}")]
         [HttpDelete]
         //Delete : /api/RecordNews/removeRecord/{id}
         public async Task<IActionResult> RemoveNewsRecord(Guid id)

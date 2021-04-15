@@ -14,7 +14,7 @@ namespace AppGmz.Models.DtoModels
         public string ShortDescription { get; set; }
         [Required]
         public string Body { get; set; }
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
         public DateTime DateTime { get; set; }
     }
 }

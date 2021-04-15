@@ -14,6 +14,6 @@ namespace AppGmz.Models.DtoModels.VacanciesDTO
         public string Requirements { get; set; }
         public string WorkExperience { get; set; }
         [Required]
-        public DateTime DatePublication { get; set; }
+        public DateTime DatePublication { get; set; } = DateTime.UtcNow;
     }
 }
