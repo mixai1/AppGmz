@@ -22,7 +22,7 @@ namespace AppGmz.CQRS.Commands.RecordNewsCommand.Remove
         {
             try
             {
-                var result = await _repository.RemoveById(request.RemoveNewsRecordDto.Id);
+                var result = await _repository.RemoveById(request.Id);
                 await _repository.SaveAsync(cancellationToken);
                 return result;
             }

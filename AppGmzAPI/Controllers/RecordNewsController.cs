@@ -115,27 +115,21 @@ namespace AppGmzAPI.Controllers
             }
         }
 
-        [Route("removeRecord")]
+        [Route("removeRecord/{id}")]
         [HttpDelete]
-        //Delete : /api/RecordNews/removeRecord
-        public async Task<IActionResult> RemoveNewsRecord(RemoveRecordNewsDto removeNewsRecordDto)
+        //Delete : /api/RecordNews/removeRecord/{id}
+        public async Task<IActionResult> RemoveNewsRecord(Guid id)
         {
             try
             {
                 Log.Information(nameof(RecordNewsController.RemoveNewsRecord));
                 _logger.LogInformation(nameof(RecordNewsController.RemoveNewsRecord));
-                if (TryValidateModel(removeNewsRecordDto))
-                {
-                    var result = await _mediator.Send(new RemoveRecordNews(removeNewsRecordDto));
-                    if (result)
-                    {
-                        return Ok();
-                    }
-                    return BadRequest("Error");
-                }
 
-                Log.Error(nameof(RecordNewsController.RemoveNewsRecord));
-                _logger.LogError(nameof(RecordNewsController.RemoveNewsRecord));
+                var result = await _mediator.Send(new RemoveRecordNews(id));
+                if (result)
+                {
+                    return Ok();
+                }
                 return BadRequest("Error");
             }
             catch (Exception e)

@@ -14,7 +14,9 @@ namespace AppGmz.Models.DtoModels
 
         [Required]
         public string Body { get; set; }
+        public string ImageURL { get; set; }
 
         public DateTime DateTime { get; set; } = DateTime.UtcNow;
+
     }
 }
