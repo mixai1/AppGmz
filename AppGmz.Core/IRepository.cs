@@ -14,6 +14,7 @@ namespace AppGmz.Core
         Task<bool> CreateAsync(T obj);
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
         Task<T> FindById(Guid id);
+        bool Update(T obj);
         Task<bool> RemoveById(Guid id);
     }
 }
