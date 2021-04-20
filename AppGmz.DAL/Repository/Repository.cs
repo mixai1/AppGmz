@@ -83,6 +83,20 @@ namespace AppGmz.DAL.Repository
             }
         }
 
+        public bool Update(T obj)
+        {
+            try
+            {
+                var result = _appDbContext.Entry(obj).State = EntityState.Modified;
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(nameof(Update), e);
+                return false;
+            }
+        }
+
         public async Task<bool> RemoveById(Guid id)
         {
             try
